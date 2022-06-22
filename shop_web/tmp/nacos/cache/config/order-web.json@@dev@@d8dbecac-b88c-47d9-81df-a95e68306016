@@ -1,0 +1,29 @@
+{
+  "name": "order_web",
+  "host": "192.168.23.1",
+  "port": 8023,
+  "tags": ["shop", "hugo", "orders", "web"],
+  "goods_srv": {
+    "name": "goods-srv"
+  },
+  "order_srv": {
+    "name": "order-srv"
+  },
+  "inventory_srv": {
+    "name": "inventory-srv"
+  },
+  "jwt": {
+    "key": "H5WR$!h2mJxL%VMPx5ZtyXVlyZl1&%1#"
+  },
+  "consul": {
+    "host": "192.168.141.128",
+    "port": 8500
+  },
+  "alipay":{
+    "app_id":"2021000119692896",
+    "private_key":"MIIEpAIBAAKCAQEAkRFltw8PQQoO/os4vce6tmMGo07WNSUqFJHpe3iwK57qDk/VwpJ5IyKUH6SA6YEyo8Bc0krR9vMX9y8wQzkB1wT8XcBb/2LMcQSIVFtGwA64lGbpa8+57sYZSciDexanQaV/nugBhHsKhuNeO/smwBDig5qlc3ez+dZ0hMJggFD6Fb58jia9SEtSYBiJn6jy59l0+6DaCoFntXW6T7i48bIGHyu7R5e/ZFQgbRCFj7vuqvZV206csusFuL+e7Tzzc/pBsVR4oY+NH3JhuM44ywLhNdstStVE0BOsqqJeHg6HUYA7Sv7LxSROKp6aH0HlEtgbgmYT5IvwnsCpxcl+eQIDAQABAoIBAQCPIQAfZj9hp1/16zz3mhlxHDEPbZhRZTKoivI3fXMsBqXdqw035TaZ4OMOeUsrl+pzwDaU0Xdp1J0/qBJRMOzMzkGE6maaiks18wfjWw9qLNwWp5cEZTaJDHEk6C45grdRQM2y5iuhH5jaT3jJa1nnRIGI4Ur+qwsqpFngJrv5vO8v8t7pgOtSEXTTG0MbDYPUSxb2EX25JyLo8QCkwKH0UBalwOua+NMk4hAo1UelVf+vSs57Dzdh3hjNz30o94py2COKkCfp9hPftwgRx6ZG+GFgbFPbbhc9xH8zOg0A8/kxFq1TOjO5PlWz1N5h+lV2L60UXq9kHdDxmrlPfA+RAoGBAMVaUVcUoUzbpcujuK4PwwpaEcT5erlkIVG4ntHrWUke1OcQe0xOu+O51C4dJO0usXBth5QfOVG+3L2jP+zJ9tAQ7Vt39/6+adWqGyQzjl4x7BrPs2fvrhvwec++QiOdYaW+y/QCzTb6HyUQfcx6klp0ZkRlPqsHAPnvFc+djK0NAoGBALwtffYWLQx8EXXBxz22DbOvRDlqpdloOc0RhrOqZoNNfzwychR9tH3/o76gXRvi6b9Lf1ajKWpKE9JZLLeMT3LLEtw2cMvdOXstgtKzVKOVbp5MSabhOno60OUNb/sdAj80rQYSZzMbsNTsPWMgxfPHW4qhsammK35Pz4ysMHQdAoGBAIRtw9FEVaymY43PshiTGRT0NaJQqoqG51jYIzLH06UeXE0lISemWaxJQVkkU2gZAhZoWScLAMKa6bMTPc0eBVG/Whcb3L0Ddy9aM1ZKhkktBLtFDqU7D0FOT98YU3dkn2bCLkfyLVSr6IRNmazBvz2ViB5zNec8DuqoBaHIneJtAoGALJU+nZodbDLM1DBn6wgB8QtaR5wr1PlrkFlRp6l8hilLNtDg1Ff/9kYl3lkSFjRJmwfhEH6xpjwMvC5ieM4mWJUiT8gaK0KrhrJ+pzrTl7okrh526LG98A2VRl9Lo5v41068m46qoqIx4BBkbuLp41rdJlguxnnXHiL8kmCNTkUCgYB2nTnYo4ALwjAJr2E4GwZdiw9lbtogotjuAlwGA+SsMX6DFHdKbR68nbhJ0kFu4wB06NcFAwYVWDsFtTaWO9cd5cn4AcWu/YNXGDUnV8W9H2OiUWdWfWSd3WdfzKc6MiNt8cWYhY5ZGuttt2n7ky8estz69zndpq2W7wr3SPw7+A==",
+    "ali_public_key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAif2LvkrfXw5KY4kdwzhZtpvr4RQNxFXsrzoJEX02+DqzFqGagC43/zYyrBQJWoGcGb4GB+p4E/4Nm0uD2EYMSzLmFD5pYau13ZHFlb19HJ9JSizpIU7W1OmorUMlpZqY95+GWqRVHU+8/okGwfuSxQpW0K2eQs4r1nWpvbM6lws9SmINRqnx8EDa2J72lhOKlignZI0vd17jjA7yVAHS1NcjftnvQn0PZMUp+plRhIVZ3TCThQglU2lj+/hy3l/nME/c/SheaNNA09PTLwRZF9GZ2oFaD1qR6Zns3IxkTK6cW7H+p+Zrcc63Ujd6au+1LnmD/Lxe9spsW2LkAkHlfwIDAQAB",
+    "notify_url":"http://5313h99f93.wicp.vip:36624/o/v1/pay/alipay/notify",
+    "return_url":"http://127.0.0.1:8089"
+  }
+}

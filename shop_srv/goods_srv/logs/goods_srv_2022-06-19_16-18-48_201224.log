@@ -1,0 +1,720 @@
+2022-06-19 16:18:48.232 | INFO     | __main__:server:72 - 启动服务：192.168.23.1:63135
+2022-06-19 16:18:48.239 | INFO     | __main__:server:75 - 服务注册开始
+2022-06-19 16:18:48.265 | INFO     | __main__:server:82 - 服务注册成功
+2022-06-19 17:19:07.788 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (12168), thread 'ThreadPoolExecutor-0_5' (13208):
+Traceback (most recent call last):
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3177, in execute_sql
+    cursor.execute(sql, params or ())
+    │      │       │    └ [False, 10, 0]
+    │      │       └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+    │      └ <function Cursor.execute at 0x000002439EF440D8>
+    └ <pymysql.cursors.Cursor object at 0x000002439E8C3848>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+             │    │      └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+             │    └ <function Cursor._query at 0x000002439EF44558>
+             └ <pymysql.cursors.Cursor object at 0x000002439E8C3848>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+    │    │     └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+    │    └ <function Connection.query at 0x000002439EF731F8>
+    └ <pymysql.connections.Connection object at 0x000002439F724548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+    │    │                │    │                             └ False
+    │    │                │    └ <function Connection._read_query_result at 0x000002439EF73828>
+    │    │                └ <pymysql.connections.Connection object at 0x000002439F724548>
+    │    └ 1
+    └ <pymysql.connections.Connection object at 0x000002439F724548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+    │      └ <function MySQLResult.read at 0x000002439EF74048>
+    └ <pymysql.connections.MySQLResult object at 0x000002439F7241C8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+                   │    └ None
+                   └ <pymysql.connections.MySQLResult object at 0x000002439F7241C8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x000002439EF6EA68>
+    └ <pymysql.protocol.MysqlPacket object at 0x000002439F71E048>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x000002439F71E048>
+    │   └ <function raise_mysql_exception at 0x000002439E8BD438>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown column 't1.transport_free' in 'field list'"
+          │          └ 1054
+          └ <class 'pymysql.err.OperationalError'>
+
+pymysql.err.OperationalError: (1054, "Unknown column 't1.transport_free' in 'field list'")
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002439CA7FAF8>
+    └ <Thread(ThreadPoolExecutor-0_5, started daemon 13208)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000002439CA7F8B8>
+    └ <Thread(ThreadPoolExecutor-0_5, started daemon 13208)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_5, started daemon 13208)>
+    │    │        │    └ (<weakref at 0x000002439F6FCB38; to 'ThreadPoolExecutor' at 0x000002439F57EBC8>, <_queue.SimpleQueue object at 0x000002439F57...
+    │    │        └ <Thread(ThreadPoolExecutor-0_5, started daemon 13208)>
+    │    └ <function _worker at 0x000002439F588948>
+    └ <Thread(ThreadPoolExecutor-0_5, started daemon 13208)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x000002439F588A68>
+    └ <concurrent.futures.thread._WorkItem object at 0x000002439F730648>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x000002439F730648>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x000002439F722A48>, <grpc._server._RPCState object at 0x000002439F730688>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x000002439F730648>
+             │    └ <function _unary_response_in_pool at 0x000002439F5B70D8>
+             └ <concurrent.futures.thread._WorkItem object at 0x000002439F730648>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x000002439C84F628>
+    └
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x000002439F730748>
+                           │        └ 
+                           └ <bound method GoodsServicer.GoodsList of <goods_srv.handler.goods.GoodsServicer object at 0x000002439F585F08>>
+
+  File "D:\PythonProjects\shop\goods_srv\handler\goods.py", line 104, in GoodsList
+    for good in goods:
+                └ <peewee.ModelSelect object at 0x000002439F71ED88>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 6960, in __iter__
+    self.execute()
+    │    └ <function BaseQuery.execute at 0x000002439EF94708>
+    └ <peewee.ModelSelect object at 0x000002439F71ED88>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+           │      └ <peewee.ModelSelect object at 0x000002439F71ED88>
+           └ <function BaseQuery.execute at 0x000002439EF94678>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1989, in execute
+    return self._execute(database)
+           │    │        └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+           │    └ <function SelectBase._execute at 0x000002439EF9A318>
+           └ <peewee.ModelSelect object at 0x000002439F71ED88>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2162, in _execute
+    cursor = database.execute(self)
+             │        │       └ <peewee.ModelSelect object at 0x000002439F71ED88>
+             │        └ <function Database.execute at 0x000002439EFAC8B8>
+             └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3190, in execute
+    return self.execute_sql(sql, params, commit=commit)
+           │    │           │    │              └ <object object at 0x000002439E5A6900>
+           │    │           │    └ [False, 10, 0]
+           │    │           └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+           │    └ <function ReconnectMixin.execute_sql at 0x000002439F23A5E8>
+           └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\shortcuts.py", line 261, in execute_sql
+    raise exc
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\shortcuts.py", line 250, in execute_sql
+    return super(ReconnectMixin, self).execute_sql(sql, params, commit)
+                 │               │                 │    │       └ <object object at 0x000002439E5A6900>
+                 │               │                 │    └ [False, 10, 0]
+                 │               │                 └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+                 │               └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+                 └ <class 'playhouse.shortcuts.ReconnectMixin'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3184, in execute_sql
+    self.commit()
+    │    └ <function Database.commit at 0x000002439EFAD558>
+    └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2950, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x000002439F72C388>
+    │       │         │        │           └ (1054, "Unknown column 't1.transport_free' in 'field list'")
+    │       │         │        └ OperationalError(1054, "Unknown column 't1.transport_free' in 'field list'")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x000002439E8BD5E8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 191, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x000002439F72C388>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(1054, "Unknown column 't1.transport_free' in 'field list'")
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3177, in execute_sql
+    cursor.execute(sql, params or ())
+    │      │       │    └ [False, 10, 0]
+    │      │       └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+    │      └ <function Cursor.execute at 0x000002439EF440D8>
+    └ <pymysql.cursors.Cursor object at 0x000002439E8C3848>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+             │    │      └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+             │    └ <function Cursor._query at 0x000002439EF44558>
+             └ <pymysql.cursors.Cursor object at 0x000002439E8C3848>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+    │    │     └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+    │    └ <function Connection.query at 0x000002439EF731F8>
+    └ <pymysql.connections.Connection object at 0x000002439F724548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+    │    │                │    │                             └ False
+    │    │                │    └ <function Connection._read_query_result at 0x000002439EF73828>
+    │    │                └ <pymysql.connections.Connection object at 0x000002439F724548>
+    │    └ 1
+    └ <pymysql.connections.Connection object at 0x000002439F724548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+    │      └ <function MySQLResult.read at 0x000002439EF74048>
+    └ <pymysql.connections.MySQLResult object at 0x000002439F7241C8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+                   │    └ None
+                   └ <pymysql.connections.MySQLResult object at 0x000002439F7241C8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x000002439EF6EA68>
+    └ <pymysql.protocol.MysqlPacket object at 0x000002439F71E048>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x000002439F71E048>
+    │   └ <function raise_mysql_exception at 0x000002439E8BD438>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown column 't1.transport_free' in 'field list'"
+          │          └ 1054
+          └ <class 'pymysql.err.OperationalError'>
+
+peewee.OperationalError: (1054, "Unknown column 't1.transport_free' in 'field list'")
+2022-06-19 17:19:20.376 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (12168), thread 'ThreadPoolExecutor-0_1' (9168):
+Traceback (most recent call last):
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3177, in execute_sql
+    cursor.execute(sql, params or ())
+    │      │       │    └ [False, 428, 1, 0]
+    │      │       └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+    │      └ <function Cursor.execute at 0x000002439EF440D8>
+    └ <pymysql.cursors.Cursor object at 0x000002439FA37708>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+             │    │      └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+             │    └ <function Cursor._query at 0x000002439EF44558>
+             └ <pymysql.cursors.Cursor object at 0x000002439FA37708>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+    │    │     └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+    │    └ <function Connection.query at 0x000002439EF731F8>
+    └ <pymysql.connections.Connection object at 0x000002439F72F748>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+    │    │                │    │                             └ False
+    │    │                │    └ <function Connection._read_query_result at 0x000002439EF73828>
+    │    │                └ <pymysql.connections.Connection object at 0x000002439F72F748>
+    │    └ 0
+    └ <pymysql.connections.Connection object at 0x000002439F72F748>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+    │      └ <function MySQLResult.read at 0x000002439EF74048>
+    └ <pymysql.connections.MySQLResult object at 0x00000243A02C6548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+                   │    └ None
+                   └ <pymysql.connections.MySQLResult object at 0x00000243A02C6548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x000002439EF6EA68>
+    └ <pymysql.protocol.MysqlPacket object at 0x00000243A02C6648>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x00000243A02C6648>
+    │   └ <function raise_mysql_exception at 0x000002439E8BD438>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown column 't1.transport_free' in 'field list'"
+          │          └ 1054
+          └ <class 'pymysql.err.OperationalError'>
+
+pymysql.err.OperationalError: (1054, "Unknown column 't1.transport_free' in 'field list'")
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002439CA7FAF8>
+    └ <Thread(ThreadPoolExecutor-0_1, started daemon 9168)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000002439CA7F8B8>
+    └ <Thread(ThreadPoolExecutor-0_1, started daemon 9168)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_1, started daemon 9168)>
+    │    │        │    └ (<weakref at 0x000002439F6EDF98; to 'ThreadPoolExecutor' at 0x000002439F57EBC8>, <_queue.SimpleQueue object at 0x000002439F57...
+    │    │        └ <Thread(ThreadPoolExecutor-0_1, started daemon 9168)>
+    │    └ <function _worker at 0x000002439F588948>
+    └ <Thread(ThreadPoolExecutor-0_1, started daemon 9168)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x000002439F588A68>
+    └ <concurrent.futures.thread._WorkItem object at 0x000002439F72F408>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x000002439F72F408>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x000002439F708458>, <grpc._server._RPCState object at 0x000002439F72F248>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x000002439F72F408>
+             │    └ <function _unary_response_in_pool at 0x000002439F5B70D8>
+             └ <concurrent.futures.thread._WorkItem object at 0x000002439F72F408>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x000002439C8508E8>
+    └ id: 428
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x000002439F72F4C8>
+                           │        └ id: 428
+                           │          
+                           └ <bound method GoodsServicer.GetGoodsDetail of <goods_srv.handler.goods.GoodsServicer object at 0x000002439F585F08>>
+
+  File "D:\PythonProjects\shop\goods_srv\handler\goods.py", line 141, in GetGoodsDetail
+    goods = Goods.get(Goods.id==request.id)
+            │     │   │     │   │       └ <field property 'GoodInfoRequest.id'>
+            │     │   │     │   └ id: 428
+            │     │   │     │     
+            │     │   │     └ <peewee.FieldAccessor object at 0x000002439F241D88>
+            │     │   └ <Model: Goods>
+            │     └ <classmethod object at 0x000002439EFCE748>
+            └ <Model: Goods>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 6522, in get
+    return sq.get()
+           │  └ <function BaseModelSelect.get at 0x000002439EFD7B88>
+           └ <peewee.ModelSelect object at 0x000002439F72F548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 6970, in get
+    return clone.execute(database)[0]
+           │     │       └ None
+           │     └ <function BaseQuery.execute at 0x000002439EF94708>
+           └ <peewee.ModelSelect object at 0x000002439F72F588>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+           │      └ <peewee.ModelSelect object at 0x000002439F72F588>
+           └ <function BaseQuery.execute at 0x000002439EF94678>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1989, in execute
+    return self._execute(database)
+           │    │        └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+           │    └ <function SelectBase._execute at 0x000002439EF9A318>
+           └ <peewee.ModelSelect object at 0x000002439F72F588>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2162, in _execute
+    cursor = database.execute(self)
+             │        │       └ <peewee.ModelSelect object at 0x000002439F72F588>
+             │        └ <function Database.execute at 0x000002439EFAC8B8>
+             └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3190, in execute
+    return self.execute_sql(sql, params, commit=commit)
+           │    │           │    │              └ <object object at 0x000002439E5A6900>
+           │    │           │    └ [False, 428, 1, 0]
+           │    │           └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+           │    └ <function ReconnectMixin.execute_sql at 0x000002439F23A5E8>
+           └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\shortcuts.py", line 261, in execute_sql
+    raise exc
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\shortcuts.py", line 250, in execute_sql
+    return super(ReconnectMixin, self).execute_sql(sql, params, commit)
+                 │               │                 │    │       └ <object object at 0x000002439E5A6900>
+                 │               │                 │    └ [False, 428, 1, 0]
+                 │               │                 └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+                 │               └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+                 └ <class 'playhouse.shortcuts.ReconnectMixin'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3184, in execute_sql
+    self.commit()
+    │    └ <function Database.commit at 0x000002439EFAD558>
+    └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2950, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x00000243A02C68C8>
+    │       │         │        │           └ (1054, "Unknown column 't1.transport_free' in 'field list'")
+    │       │         │        └ OperationalError(1054, "Unknown column 't1.transport_free' in 'field list'")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x000002439E8BD5E8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 191, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x00000243A02C68C8>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(1054, "Unknown column 't1.transport_free' in 'field list'")
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3177, in execute_sql
+    cursor.execute(sql, params or ())
+    │      │       │    └ [False, 428, 1, 0]
+    │      │       └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+    │      └ <function Cursor.execute at 0x000002439EF440D8>
+    └ <pymysql.cursors.Cursor object at 0x000002439FA37708>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+             │    │      └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+             │    └ <function Cursor._query at 0x000002439EF44558>
+             └ <pymysql.cursors.Cursor object at 0x000002439FA37708>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+    │    │     └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+    │    └ <function Connection.query at 0x000002439EF731F8>
+    └ <pymysql.connections.Connection object at 0x000002439F72F748>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+    │    │                │    │                             └ False
+    │    │                │    └ <function Connection._read_query_result at 0x000002439EF73828>
+    │    │                └ <pymysql.connections.Connection object at 0x000002439F72F748>
+    │    └ 0
+    └ <pymysql.connections.Connection object at 0x000002439F72F748>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+    │      └ <function MySQLResult.read at 0x000002439EF74048>
+    └ <pymysql.connections.MySQLResult object at 0x00000243A02C6548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+                   │    └ None
+                   └ <pymysql.connections.MySQLResult object at 0x00000243A02C6548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x000002439EF6EA68>
+    └ <pymysql.protocol.MysqlPacket object at 0x00000243A02C6648>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x00000243A02C6648>
+    │   └ <function raise_mysql_exception at 0x000002439E8BD438>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown column 't1.transport_free' in 'field list'"
+          │          └ 1054
+          └ <class 'pymysql.err.OperationalError'>
+
+peewee.OperationalError: (1054, "Unknown column 't1.transport_free' in 'field list'")
+2022-06-19 17:20:32.965 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (12168), thread 'ThreadPoolExecutor-0_5' (13208):
+Traceback (most recent call last):
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3177, in execute_sql
+    cursor.execute(sql, params or ())
+    │      │       │    └ [False, 10, 0]
+    │      │       └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+    │      └ <function Cursor.execute at 0x000002439EF440D8>
+    └ <pymysql.cursors.Cursor object at 0x00000243A02C8C88>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+             │    │      └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+             │    └ <function Cursor._query at 0x000002439EF44558>
+             └ <pymysql.cursors.Cursor object at 0x00000243A02C8C88>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+    │    │     └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+    │    └ <function Connection.query at 0x000002439EF731F8>
+    └ <pymysql.connections.Connection object at 0x000002439F724548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+    │    │                │    │                             └ False
+    │    │                │    └ <function Connection._read_query_result at 0x000002439EF73828>
+    │    │                └ <pymysql.connections.Connection object at 0x000002439F724548>
+    │    └ 1
+    └ <pymysql.connections.Connection object at 0x000002439F724548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+    │      └ <function MySQLResult.read at 0x000002439EF74048>
+    └ <pymysql.connections.MySQLResult object at 0x00000243A02C8C08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+                   │    └ None
+                   └ <pymysql.connections.MySQLResult object at 0x00000243A02C8C08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x000002439EF6EA68>
+    └ <pymysql.protocol.MysqlPacket object at 0x00000243A02CEA08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x00000243A02CEA08>
+    │   └ <function raise_mysql_exception at 0x000002439E8BD438>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown column 't1.transport_free' in 'field list'"
+          │          └ 1054
+          └ <class 'pymysql.err.OperationalError'>
+
+pymysql.err.OperationalError: (1054, "Unknown column 't1.transport_free' in 'field list'")
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002439CA7FAF8>
+    └ <Thread(ThreadPoolExecutor-0_5, started daemon 13208)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000002439CA7F8B8>
+    └ <Thread(ThreadPoolExecutor-0_5, started daemon 13208)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_5, started daemon 13208)>
+    │    │        │    └ (<weakref at 0x000002439F6FCB38; to 'ThreadPoolExecutor' at 0x000002439F57EBC8>, <_queue.SimpleQueue object at 0x000002439F57...
+    │    │        └ <Thread(ThreadPoolExecutor-0_5, started daemon 13208)>
+    │    └ <function _worker at 0x000002439F588948>
+    └ <Thread(ThreadPoolExecutor-0_5, started daemon 13208)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x000002439F588A68>
+    └ <concurrent.futures.thread._WorkItem object at 0x00000243A02CB3C8>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x00000243A02CB3C8>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x00000243A02C7818>, <grpc._server._RPCState object at 0x00000243A02CB408>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x00000243A02CB3C8>
+             │    └ <function _unary_response_in_pool at 0x000002439F5B70D8>
+             └ <concurrent.futures.thread._WorkItem object at 0x00000243A02CB3C8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x000002439C84F628>
+    └
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x00000243A02C8C48>
+                           │        └ 
+                           └ <bound method GoodsServicer.GoodsList of <goods_srv.handler.goods.GoodsServicer object at 0x000002439F585F08>>
+
+  File "D:\PythonProjects\shop\goods_srv\handler\goods.py", line 104, in GoodsList
+    for good in goods:
+                └ <peewee.ModelSelect object at 0x00000243A02C8648>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 6960, in __iter__
+    self.execute()
+    │    └ <function BaseQuery.execute at 0x000002439EF94708>
+    └ <peewee.ModelSelect object at 0x00000243A02C8648>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+           │      └ <peewee.ModelSelect object at 0x00000243A02C8648>
+           └ <function BaseQuery.execute at 0x000002439EF94678>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1989, in execute
+    return self._execute(database)
+           │    │        └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+           │    └ <function SelectBase._execute at 0x000002439EF9A318>
+           └ <peewee.ModelSelect object at 0x00000243A02C8648>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2162, in _execute
+    cursor = database.execute(self)
+             │        │       └ <peewee.ModelSelect object at 0x00000243A02C8648>
+             │        └ <function Database.execute at 0x000002439EFAC8B8>
+             └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3190, in execute
+    return self.execute_sql(sql, params, commit=commit)
+           │    │           │    │              └ <object object at 0x000002439E5A6900>
+           │    │           │    └ [False, 10, 0]
+           │    │           └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+           │    └ <function ReconnectMixin.execute_sql at 0x000002439F23A5E8>
+           └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\shortcuts.py", line 261, in execute_sql
+    raise exc
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\shortcuts.py", line 250, in execute_sql
+    return super(ReconnectMixin, self).execute_sql(sql, params, commit)
+                 │               │                 │    │       └ <object object at 0x000002439E5A6900>
+                 │               │                 │    └ [False, 10, 0]
+                 │               │                 └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+                 │               └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+                 └ <class 'playhouse.shortcuts.ReconnectMixin'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3184, in execute_sql
+    self.commit()
+    │    └ <function Database.commit at 0x000002439EFAD558>
+    └ <goods_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002439F051508>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2950, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x00000243A02CEE08>
+    │       │         │        │           └ (1054, "Unknown column 't1.transport_free' in 'field list'")
+    │       │         │        └ OperationalError(1054, "Unknown column 't1.transport_free' in 'field list'")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x000002439E8BD5E8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 191, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x00000243A02CEE08>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(1054, "Unknown column 't1.transport_free' in 'field list'")
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3177, in execute_sql
+    cursor.execute(sql, params or ())
+    │      │       │    └ [False, 10, 0]
+    │      │       └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+    │      └ <function Cursor.execute at 0x000002439EF440D8>
+    └ <pymysql.cursors.Cursor object at 0x00000243A02C8C88>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+             │    │      └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+             │    └ <function Cursor._query at 0x000002439EF44558>
+             └ <pymysql.cursors.Cursor object at 0x00000243A02C8C88>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+    │    │     └ 'SELECT `t1`.`id`, `t1`.`add_time`, `t1`.`update_time`, `t1`.`is_deleted`, `t1`.`category_id`, `t1`.`brand_id`, `t1`.`on_sale...
+    │    └ <function Connection.query at 0x000002439EF731F8>
+    └ <pymysql.connections.Connection object at 0x000002439F724548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+    │    │                │    │                             └ False
+    │    │                │    └ <function Connection._read_query_result at 0x000002439EF73828>
+    │    │                └ <pymysql.connections.Connection object at 0x000002439F724548>
+    │    └ 1
+    └ <pymysql.connections.Connection object at 0x000002439F724548>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+    │      └ <function MySQLResult.read at 0x000002439EF74048>
+    └ <pymysql.connections.MySQLResult object at 0x00000243A02C8C08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+                   │    └ None
+                   └ <pymysql.connections.MySQLResult object at 0x00000243A02C8C08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x000002439EF6EA68>
+    └ <pymysql.protocol.MysqlPacket object at 0x00000243A02CEA08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x00000243A02CEA08>
+    │   └ <function raise_mysql_exception at 0x000002439E8BD438>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown column 't1.transport_free' in 'field list'"
+          │          └ 1054
+          └ <class 'pymysql.err.OperationalError'>
+
+peewee.OperationalError: (1054, "Unknown column 't1.transport_free' in 'field list'")
+2022-06-19 17:22:46.058 | INFO     | __main__:on_exit:41 - 注销71ac6942-efa8-11ec-a3b3-5a00e3ca956d服务
+2022-06-19 17:22:46.111 | INFO     | __main__:on_exit:43 - 服务注销成功

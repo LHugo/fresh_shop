@@ -1,0 +1,246 @@
+2022-04-26 14:49:10.906 | INFO     | __main__:server:72 - 启动服务：192.168.23.1:62128
+2022-04-26 14:49:10.910 | INFO     | __main__:server:75 - 服务注册开始
+2022-04-26 14:49:10.934 | INFO     | __main__:server:82 - 服务注册成功
+2022-04-26 14:49:26.366 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (3968), thread 'ThreadPoolExecutor-0_0' (4412):
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x00000250CF02FAF8>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 4412)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x00000250CF02F8B8>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 4412)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_0, started daemon 4412)>
+    │    │        │    └ (<weakref at 0x00000250D1A81F98; to 'ThreadPoolExecutor' at 0x00000250D0B9D1C8>, <_queue.SimpleQueue object at 0x00000250D191...
+    │    │        └ <Thread(ThreadPoolExecutor-0_0, started daemon 4412)>
+    │    └ <function _worker at 0x00000250D191B9D8>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 4412)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x00000250D191BAF8>
+    └ <concurrent.futures.thread._WorkItem object at 0x00000250D195CBC8>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x00000250D195CBC8>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x00000250D1A81C28>, <grpc._server._RPCState object at 0x00000250D1958108>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x00000250D195CBC8>
+             │    └ <function _unary_response_in_pool at 0x00000250D194C1F8>
+             └ <concurrent.futures.thread._WorkItem object at 0x00000250D195CBC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x00000250CEF5DC48>
+    └ id: 421
+      id: 424
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x00000250D1A852C8>
+                           │        └ id: 421
+                           │          id: 424
+                           │          
+                           └ <bound method GoodsServicer.BatchGetGoods of <goods_srv.handler.goods.GoodsServicer object at 0x00000250D1923948>>
+
+  File "D:\PythonProjects\shop\goods_srv\handler\goods.py", line 101, in BatchGetGoods
+    rsp.total = goods.count()
+    │   │       │     └ <function SelectBase.count at 0x00000250D1441AF8>
+    │   │       └ <peewee.ModelSelect object at 0x00000250D1A85208>
+    │   └ <field property 'GoodsListResponse.total'>
+    └
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <goods_srv.model.models.ReconnectMysqlDatabase object at 0x00000250D1286C48>
+           │      └ <peewee.ModelSelect object at 0x00000250D1A85208>
+           └ <function SelectBase.count at 0x00000250D1441A68>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2196, in count
+    return Select([clone], [fn.COUNT(SQL('1'))]).scalar(database)
+           │       │        │        │                  └ <goods_srv.model.models.ReconnectMysqlDatabase object at 0x00000250D1286C48>
+           │       │        │        └ <class 'peewee.SQL'>
+           │       │        └ <peewee.Function object at 0x00000250D1432648>
+           │       └ <peewee.ModelSelect object at 0x00000250D1A85B48>
+           └ <class 'peewee.Select'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <goods_srv.model.models.ReconnectMysqlDatabase object at 0x00000250D1286C48>
+           │      └ <peewee.Select object at 0x00000250D1A85C08>
+           └ <function SelectBase.scalar at 0x00000250D1441948>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2181, in scalar
+    row = self.tuples().peek(database)
+          │    │             └ <goods_srv.model.models.ReconnectMysqlDatabase object at 0x00000250D1286C48>
+          │    └ <function Node.copy.<locals>.inner at 0x00000250D143B558>
+          └ <peewee.Select object at 0x00000250D1A85C08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <goods_srv.model.models.ReconnectMysqlDatabase object at 0x00000250D1286C48>
+           │      └ <peewee.Select object at 0x00000250D1A85C88>
+           └ <function SelectBase.peek at 0x00000250D1441708>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2168, in peek
+    rows = self.execute(database)[:n]
+           │    │       │          └ 1
+           │    │       └ <goods_srv.model.models.ReconnectMysqlDatabase object at 0x00000250D1286C48>
+           │    └ <function BaseQuery.execute at 0x00000250D143BA68>
+           └ <peewee.Select object at 0x00000250D1A85C88>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <goods_srv.model.models.ReconnectMysqlDatabase object at 0x00000250D1286C48>
+           │      └ <peewee.Select object at 0x00000250D1A85C88>
+           └ <function BaseQuery.execute at 0x00000250D143B9D8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1989, in execute
+    return self._execute(database)
+           │    │        └ <goods_srv.model.models.ReconnectMysqlDatabase object at 0x00000250D1286C48>
+           │    └ <function SelectBase._execute at 0x00000250D1441678>
+           └ <peewee.Select object at 0x00000250D1A85C88>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2162, in _execute
+    cursor = database.execute(self)
+             │        │       └ <peewee.Select object at 0x00000250D1A85C88>
+             │        └ <function Database.execute at 0x00000250D1456C18>
+             └ <goods_srv.model.models.ReconnectMysqlDatabase object at 0x00000250D1286C48>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3189, in execute
+    sql, params = ctx.sql(query).query()
+                  │   │   └ <peewee.Select object at 0x00000250D1A85C88>
+                  │   └ <function Context.sql at 0x00000250D14243A8>
+                  └ <peewee.Context object at 0x00000250D1A90E58>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 614, in sql
+    return obj.__sql__(self)
+           │   │       └ <peewee.Context object at 0x00000250D1A90E58>
+           │   └ <function Select.__sql__ at 0x00000250D14471F8>
+           └ <peewee.Select object at 0x00000250D1A85C88>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2438, in __sql__
+    ctx.literal(' FROM ').sql(CommaNodeList(self._from_list))
+    │   │                     │             │    └ [<peewee.ModelSelect object at 0x00000250D1A85B48>]
+    │   │                     │             └ <peewee.Select object at 0x00000250D1A85C88>
+    │   │                     └ <function CommaNodeList at 0x00000250D1437F78>
+    │   └ <function Context.literal at 0x00000250D1424438>
+    └ <peewee.Context object at 0x00000250D1A90E58>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 614, in sql
+    return obj.__sql__(self)
+           │   │       └ <peewee.Context object at 0x00000250D1A90E58>
+           │   └ <function NodeList.__sql__ at 0x00000250D14390D8>
+           └ <peewee.NodeList object at 0x00000250D1A85E48>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1784, in __sql__
+    ctx.sql(self.nodes[n_nodes - 1])
+    │   │   │    │     └ 1
+    │   │   │    └ [<peewee.ModelSelect object at 0x00000250D1A85B48>]
+    │   │   └ <peewee.NodeList object at 0x00000250D1A85E48>
+    │   └ <function Context.sql at 0x00000250D14243A8>
+    └ <peewee.Context object at 0x00000250D1A90E58>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 614, in sql
+    return obj.__sql__(self)
+           │   │       └ <peewee.Context object at 0x00000250D1A90E58>
+           │   └ <function Select.__sql__ at 0x00000250D14471F8>
+           └ <peewee.ModelSelect object at 0x00000250D1A85B48>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2441, in __sql__
+    ctx.literal(' WHERE ').sql(self._where)
+    │   │                      │    └ <peewee.Expression object at 0x00000250D1A85A88>
+    │   │                      └ <peewee.ModelSelect object at 0x00000250D1A85B48>
+    │   └ <function Context.literal at 0x00000250D1424438>
+    └ <peewee.Context object at 0x00000250D1A90E58>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 614, in sql
+    return obj.__sql__(self)
+           │   │       └ <peewee.Context object at 0x00000250D1A90E58>
+           │   └ <function Expression.__sql__ at 0x00000250D1434828>
+           └ <peewee.Expression object at 0x00000250D1A85A88>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1490, in __sql__
+    .sql(self.rhs))
+         │    └ <peewee.Expression object at 0x00000250D1A85288>
+         └ <peewee.Expression object at 0x00000250D1A85A88>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 614, in sql
+    return obj.__sql__(self)
+           │   │       └ <peewee.Context object at 0x00000250D1A90E58>
+           │   └ <function Expression.__sql__ at 0x00000250D1434828>
+           └ <peewee.Expression object at 0x00000250D1A85288>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1484, in __sql__
+    if op_in and ctx.as_new().parse(self.rhs)[0] == '()':
+       │         │   │              │    └ [421, 424]
+       │         │   │              └ <peewee.Expression object at 0x00000250D1A85288>
+       │         │   └ <function Context.as_new at 0x00000250D1421828>
+       │         └ <peewee.Context object at 0x00000250D1A90E58>
+       └ True
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 652, in parse
+    return self.sql(node).query()
+           │    │   └ [421, 424]
+           │    └ <function Context.sql at 0x00000250D14243A8>
+           └ <peewee.Context object at 0x00000250D1A9EC28>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 618, in sql
+    return self.sql(Value(obj))
+           │    │   │     └ [421, 424]
+           │    │   └ <class 'peewee.Value'>
+           │    └ <function Context.sql at 0x00000250D14243A8>
+           └ <peewee.Context object at 0x00000250D1A9EC28>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 614, in sql
+    return obj.__sql__(self)
+           │   │       └ <peewee.Context object at 0x00000250D1A9EC28>
+           │   └ <function Value.__sql__ at 0x00000250D14341F8>
+           └ <peewee.Value object at 0x00000250D1AA1888>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1390, in __sql__
+    return ctx.value(self.value, self.converter)
+           │   │     │    │      │    └ None
+           │   │     │    │      └ <peewee.Value object at 0x00000250D1AA1888>
+           │   │     │    └ [421, 424]
+           │   │     └ <peewee.Value object at 0x00000250D1AA1888>
+           │   └ <function Context.value at 0x00000250D14244C8>
+           └ <peewee.Context object at 0x00000250D1A9EC28>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 630, in value
+    value = self.state.converter(value)
+            │    │               └ [421, 424]
+            │    └ <member 'state' of 'Context' objects>
+            └ <peewee.Context object at 0x00000250D1A9EC28>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 4602, in db_value
+    return value if value is None else self.adapt(value)
+           │        │                  │    │     └ [421, 424]
+           │        │                  │    └ <function IntegerField.adapt at 0x00000250D14655E8>
+           │        │                  └ <AutoField: Goods.id>
+           │        └ [421, 424]
+           └ [421, 424]
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 4662, in adapt
+    return int(value)
+               └ [421, 424]
+
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'google.protobuf.pyext._message.RepeatedScalarContainer'
+2022-04-26 14:51:29.297 | INFO     | __main__:on_exit:41 - 注销fa3b4348-c52c-11ec-8c13-5800e3ca956e服务
+2022-04-26 14:51:29.372 | INFO     | __main__:on_exit:43 - 服务注销成功

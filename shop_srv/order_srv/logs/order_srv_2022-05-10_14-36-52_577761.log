@@ -1,0 +1,71 @@
+2022-05-10 14:36:52.609 | INFO     | __main__:server:72 - 启动服务：192.168.23.1:55601
+2022-05-10 14:36:52.630 | INFO     | __main__:server:75 - 服务注册开始
+2022-05-10 14:36:52.655 | INFO     | __main__:server:82 - 服务注册成功
+2022-05-10 14:37:24.320 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (14100), thread 'ThreadPoolExecutor-0_1' (13496):
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x0000025E2086FAF8>
+    └ <Thread(ThreadPoolExecutor-0_1, started daemon 13496)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x0000025E2086F8B8>
+    └ <Thread(ThreadPoolExecutor-0_1, started daemon 13496)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_1, started daemon 13496)>
+    │    │        │    └ (<weakref at 0x0000025E23809A98; to 'ThreadPoolExecutor' at 0x0000025E23696F88>, <_queue.SimpleQueue object at 0x0000025E2369...
+    │    │        └ <Thread(ThreadPoolExecutor-0_1, started daemon 13496)>
+    │    └ <function _worker at 0x0000025E2369D708>
+    └ <Thread(ThreadPoolExecutor-0_1, started daemon 13496)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x0000025E2369D828>
+    └ <concurrent.futures.thread._WorkItem object at 0x0000025E2381B948>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x0000025E2381B948>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x0000025E23819EF8>, <grpc._server._RPCState object at 0x0000025E2381BB08>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x0000025E2381B948>
+             │    └ <function _unary_response_in_pool at 0x0000025E236D0EE8>
+             └ <concurrent.futures.thread._WorkItem object at 0x0000025E2381B948>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x0000025E20A7DE88>
+    └ userId: 1
+      address: "\345\216\246\351\227\250\345\270\202"
+      mobile: "13169188007"
+      name: "hugo"
+      post: "\345\260\275\345\277\253\...
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x0000025E2381E048>
+                           │        └ userId: 1
+                           │          address: "\345\216\246\351\227\250\345\270\202"
+                           │          mobile: "13169188007"
+                           │          name: "hugo"
+                           │          post: "\345\260\275\345\277\253\...
+                           └ <bound method OrderServicer.CreateOrder of <order_srv.handler.order.OrderServicer object at 0x0000025E236A1148>>
+
+  File "D:\PythonProjects\shop\order_srv\handler\order.py", line 177, in CreateOrder
+    return order_pb2.OrderInfoResponse(id=order.id, orderSn=order.order_sn, total=order_amount)
+           │         │                    │     │           │     │               └ 224.50000762939453
+           │         │                    │     │           │     └ <peewee.FieldAccessor object at 0x0000025E232A28C8>
+           │         │                    │     │           └ <OrderInfo: 1>
+           │         │                    │     └ <peewee.FieldAccessor object at 0x0000025E232A2788>
+           │         │                    └ <OrderInfo: 1>
+           │         └ <class 'order_pb2.OrderInfoResponse'>
+           └ <module 'order_srv.proto.order_pb2' from 'D:\\PythonProjects\\shop\\order_srv\\proto\\order_pb2.py'>
+
+TypeError: 224.50000762939453 has type float, but expected one of: bytes, unicode
+2022-05-10 14:48:15.919 | INFO     | __main__:on_exit:41 - 注销93f48e5a-d02b-11ec-992b-5800e3ca956e服务
+2022-05-10 14:48:15.976 | INFO     | __main__:on_exit:43 - 服务注销成功

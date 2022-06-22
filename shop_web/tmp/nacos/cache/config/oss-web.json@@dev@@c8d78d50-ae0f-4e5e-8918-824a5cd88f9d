@@ -1,0 +1,20 @@
+{
+    "name": "oss-web",
+    "host": "192.168.23.1",
+    "tags":["shop", "hugo", "oss", "web"],
+    "port": 8029,
+    "oss":{
+        "key":"LTAI5tBrzbCh5mu47Ykyw17s",
+        "secrect":"6h9ruj5uUqslfPh8qiB25zlqblCpC1",
+        "host":"https://shop--files.oss-cn-shenzhen.aliyuncs.com",
+        "callback_url":"http://5313h99f93.wicp.vip/oss/v1/oss/callback",
+        "upload_dir":"shop-images/"
+    },
+    "jwt": {
+        "key": "H5WR$!h2mJxL%VMPx5ZtyXVlyZl1&%1#"
+    },
+    "consul":{
+        "host": "192.168.141.128",
+        "port": 8500
+    }
+}

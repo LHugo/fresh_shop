@@ -1,0 +1,16 @@
+{
+  "name": "goods_web",
+  "host": "192.168.23.1",
+  "port": 8022,
+  "tags": ["shop", "hugo", "goods", "web"],
+  "goods_srv": {
+    "name": "goods-srv"
+  },
+  "jwt": {
+    "key": "H5WR$!h2mJxL%VMPx5ZtyXVlyZl1&%1#"
+  },
+  "consul": {
+    "host": "192.168.141.128",
+    "port": 8500
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "user_operation_web",
+  "host": "192.168.23.1",
+  "port": 8027,
+  "tags": ["shop", "hugo", "user_operation", "web"],
+  "goods_srv": {
+    "name": "goods-srv"
+  },
+  "user_operation_srv": {
+    "name": "user_operation_srv"
+  },
+  "jwt": {
+    "key": "H5WR$!h2mJxL%VMPx5ZtyXVlyZl1&%1#"
+  },
+  "consul": {
+    "host": "192.168.141.128",
+    "port": 8500
+  }
+}

@@ -1,0 +1,179 @@
+2022-05-18 16:20:55.181 | INFO     | __main__:server:76 - 启动服务：192.168.23.1:50800
+2022-05-18 16:20:55.185 | INFO     | __main__:server:79 - 服务注册开始
+2022-05-18 16:20:55.341 | INFO     | __main__:server:86 - 服务注册成功
+2022-05-18 16:21:06.076 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (9892), thread 'ThreadPoolExecutor-0_1' (4340):
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x00000231CCBBFAF8>
+    └ <Thread(ThreadPoolExecutor-0_1, started daemon 4340)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x00000231CCBBF8B8>
+    └ <Thread(ThreadPoolExecutor-0_1, started daemon 4340)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_1, started daemon 4340)>
+    │    │        │    └ (<weakref at 0x00000231CF94E0E8; to 'ThreadPoolExecutor' at 0x00000231CF7D1F08>, <_queue.SimpleQueue object at 0x00000231CF7C...
+    │    │        └ <Thread(ThreadPoolExecutor-0_1, started daemon 4340)>
+    │    └ <function _worker at 0x00000231CF7D99D8>
+    └ <Thread(ThreadPoolExecutor-0_1, started daemon 4340)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x00000231CF7D9AF8>
+    └ <concurrent.futures.thread._WorkItem object at 0x00000231CF938F08>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x00000231CF938F08>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x00000231CF941C28>, <grpc._server._RPCState object at 0x00000231CEC96348>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x00000231CF938F08>
+             │    └ <function _unary_response_in_pool at 0x00000231CF80D1F8>
+             └ <concurrent.futures.thread._WorkItem object at 0x00000231CF938F08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x00000231CCAC71E8>
+    └ userId: 11
+      messageType: 1
+      subject: "test"
+      text: "test"
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x00000231CF938548>
+                           │        └ userId: 11
+                           │          messageType: 1
+                           │          subject: "test"
+                           │          text: "test"
+                           │          
+                           └ <bound method MessageServicer.CreateMessage of <user_operation_srv.handler.message.MessageServicer object at 0x00000231CF7E03...
+
+  File "D:\PythonProjects\shop\user_operation_srv\handler\message.py", line 32, in CreateMessage
+    message = LeavingMessages()
+
+NameError: name 'LeavingMessages' is not defined
+2022-05-18 16:23:55.394 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (9892), thread 'ThreadPoolExecutor-0_3' (12064):
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x00000231CCBBFAF8>
+    └ <Thread(ThreadPoolExecutor-0_3, started daemon 12064)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x00000231CCBBF8B8>
+    └ <Thread(ThreadPoolExecutor-0_3, started daemon 12064)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_3, started daemon 12064)>
+    │    │        │    └ (<weakref at 0x00000231CF98A4F8; to 'ThreadPoolExecutor' at 0x00000231CF7D1F08>, <_queue.SimpleQueue object at 0x00000231CF7C...
+    │    │        └ <Thread(ThreadPoolExecutor-0_3, started daemon 12064)>
+    │    └ <function _worker at 0x00000231CF7D99D8>
+    └ <Thread(ThreadPoolExecutor-0_3, started daemon 12064)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x00000231CF7D9AF8>
+    └ <concurrent.futures.thread._WorkItem object at 0x00000231CF7DEA08>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x00000231CF7DEA08>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x00000231CF99D408>, <grpc._server._RPCState object at 0x00000231CF7DE848>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x00000231CF7DEA08>
+             │    └ <function _unary_response_in_pool at 0x00000231CF80D1F8>
+             └ <concurrent.futures.thread._WorkItem object at 0x00000231CF7DEA08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x00000231CCAC71E8>
+    └ userId: 11
+      messageType: 1
+      subject: "test"
+      text: "test"
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x00000231CF9B8048>
+                           │        └ userId: 11
+                           │          messageType: 1
+                           │          subject: "test"
+                           │          text: "test"
+                           │          
+                           └ <bound method MessageServicer.CreateMessage of <user_operation_srv.handler.message.MessageServicer object at 0x00000231CF7E03...
+
+  File "D:\PythonProjects\shop\user_operation_srv\handler\message.py", line 32, in CreateMessage
+    message = LeavingMessages()
+
+NameError: name 'LeavingMessages' is not defined
+2022-05-18 16:24:10.270 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (9892), thread 'ThreadPoolExecutor-0_7' (11352):
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x00000231CCBBFAF8>
+    └ <Thread(ThreadPoolExecutor-0_7, started daemon 11352)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x00000231CCBBF8B8>
+    └ <Thread(ThreadPoolExecutor-0_7, started daemon 11352)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_7, started daemon 11352)>
+    │    │        │    └ (<weakref at 0x00000231CF993138; to 'ThreadPoolExecutor' at 0x00000231CF7D1F08>, <_queue.SimpleQueue object at 0x00000231CF7C...
+    │    │        └ <Thread(ThreadPoolExecutor-0_7, started daemon 11352)>
+    │    └ <function _worker at 0x00000231CF7D99D8>
+    └ <Thread(ThreadPoolExecutor-0_7, started daemon 11352)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x00000231CF7D9AF8>
+    └ <concurrent.futures.thread._WorkItem object at 0x00000231CF9BFDC8>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x00000231CF9BFDC8>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x00000231CF7D8188>, <grpc._server._RPCState object at 0x00000231CF9BFC88>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x00000231CF9BFDC8>
+             │    └ <function _unary_response_in_pool at 0x00000231CF80D1F8>
+             └ <concurrent.futures.thread._WorkItem object at 0x00000231CF9BFDC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x00000231CCAC71E8>
+    └ userId: 11
+      messageType: 1
+      subject: "test"
+      text: "test"
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x00000231CF9B8088>
+                           │        └ userId: 11
+                           │          messageType: 1
+                           │          subject: "test"
+                           │          text: "test"
+                           │          
+                           └ <bound method MessageServicer.CreateMessage of <user_operation_srv.handler.message.MessageServicer object at 0x00000231CF7E03...
+
+  File "D:\PythonProjects\shop\user_operation_srv\handler\message.py", line 32, in CreateMessage
+    message = LeavingMessages()
+
+NameError: name 'LeavingMessages' is not defined
+2022-05-18 16:25:38.445 | INFO     | __main__:on_exit:43 - 注销701f7306-d683-11ec-8de0-5800e3ca956e服务
+2022-05-18 16:25:38.526 | INFO     | __main__:on_exit:45 - 服务注销成功

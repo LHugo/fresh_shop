@@ -1,0 +1,79 @@
+2022-05-20 10:52:09.929 | INFO     | __main__:server:71 - 启动服务：192.168.23.1:54761
+2022-05-20 10:52:09.930 | INFO     | __main__:server:73 - 服务注册开始
+2022-05-20 10:52:09.951 | INFO     | __main__:server:79 - 服务注册成功
+2022-05-20 10:54:22.733 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (14180), thread 'ThreadPoolExecutor-0_0' (7100):
+Traceback (most recent call last):
+
+  File "D:\pycharm\PyCharm 2021.1.3\plugins\python\helpers\pydev\_pydev_bundle\pydev_monkey.py", line 795, in __call__
+    ret = self.original_func(*self.args, **self.kwargs)
+          │    │              │    │       │    └ {}
+          │    │              │    │       └ <_pydev_bundle.pydev_monkey._NewThreadStartupWithTrace object at 0x000002CCC518FD48>
+          │    │              │    └ ()
+          │    │              └ <_pydev_bundle.pydev_monkey._NewThreadStartupWithTrace object at 0x000002CCC518FD48>
+          │    └ <bound method Thread._bootstrap of <Thread(ThreadPoolExecutor-0_0, started daemon 7100)>>
+          └ <_pydev_bundle.pydev_monkey._NewThreadStartupWithTrace object at 0x000002CCC518FD48>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002CCA715DD38>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 7100)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000002CCA715DAF8>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 7100)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_0, started daemon 7100)>
+    │    │        │    └ (<weakref at 0x000002CCC52A1C78; to 'ThreadPoolExecutor' at 0x000002CCC512C888>, <_queue.SimpleQueue object at 0x000002CCC512...
+    │    │        └ <Thread(ThreadPoolExecutor-0_0, started daemon 7100)>
+    │    └ <function _worker at 0x000002CCC5132288>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 7100)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x000002CCC5132438>
+    └ <concurrent.futures.thread._WorkItem object at 0x000002CCC518F8C8>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x000002CCC518F8C8>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x000002CCC5182A48>, <grpc._server._RPCState object at 0x000002CCC518F208>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x000002CCC518F8C8>
+             │    └ <function _unary_response_in_pool at 0x000002CCC51629D8>
+             └ <concurrent.futures.thread._WorkItem object at 0x000002CCC518F8C8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x000002CCC239AAB8>
+    └ id: 11
+      nick_name: "hugo"
+      gender: "male"
+      birthday: 18446744011573954816
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x000002CCC518FDC8>
+                           │        └ id: 11
+                           │          nick_name: "hugo"
+                           │          gender: "male"
+                           │          birthday: 18446744011573954816
+                           │          
+                           └ <bound method UserServicer.UpdateUser of <user_srv.handler.user.UserServicer object at 0x000002CCC512FB08>>
+
+  File "D:\PythonProjects\shop\user_srv\handler\user.py", line 106, in UpdateUser
+    user.birthday = date.localtime(request.birthday)
+    │    │          │              │       └ <field property 'UpdateUserInfo.birthday'>
+    │    │          │              └ id: 11
+    │    │          │                nick_name: "hugo"
+    │    │          │                gender: "male"
+    │    │          │                birthday: 18446744011573954816
+    │    │          │                
+    │    │          └ <class 'datetime.date'>
+    │    └ <peewee.FieldAccessor object at 0x000002CCC255BA08>
+    └ <User: 11>
+
+AttributeError: type object 'datetime.date' has no attribute 'localtime'

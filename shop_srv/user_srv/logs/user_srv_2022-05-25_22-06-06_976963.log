@@ -1,0 +1,779 @@
+2022-05-25 22:06:06.994 | INFO     | __main__:server:71 - 启动服务：192.168.23.1:63727
+2022-05-25 22:06:06.997 | INFO     | __main__:server:73 - 服务注册开始
+2022-05-25 22:06:07.310 | INFO     | __main__:server:79 - 服务注册成功
+2022-05-25 22:23:54.425 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (5176), thread 'ThreadPoolExecutor-0_6' (15380):
+Traceback (most recent call last):
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3113, in connect
+    self._state.set_connection(self._connect())
+    │    │      │              │    └ <function PooledDatabase._connect at 0x00000256287134C8>
+    │    │      │              └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+    │    │      └ <function _ConnectionState.set_connection at 0x00000256285B3B88>
+    │    └ <peewee._ConnectionLocal object at 0x000002562875C288>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\pool.py", line 156, in _connect
+    conn = super(PooledDatabase, self)._connect()
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 4034, in _connect
+    conn = mysql.connect(db=self.database, **self.connect_params)
+           │     │          │    │           │    └ {'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'host': '192.168.141.128', 'port': 3306, 'user': 'roo...
+           │     │          │    │           └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │     │          │    └ 'shop_user_srv'
+           │     │          └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │     └ <class 'pymysql.connections.Connection'>
+           └ <module 'pymysql' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\__init__.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 353, in __init__
+    self.connect()
+    │    └ <function Connection.connect at 0x000002562857C4C8>
+    └ <pymysql.connections.Connection object at 0x0000025628CE6348>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 633, in connect
+    self._request_authentication()
+    │    └ <function Connection._request_authentication at 0x000002562857C948>
+    └ <pymysql.connections.Connection object at 0x0000025628CE6348>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+                  │    └ <function Connection._read_packet at 0x000002562857C5E8>
+                  └ <pymysql.connections.Connection object at 0x0000025628CE6348>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x00000256285769D8>
+    └ <pymysql.protocol.MysqlPacket object at 0x0000025628CCF9C8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x0000025628CCF9C8>
+    │   └ <function raise_mysql_exception at 0x00000256284009D8>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown database 'shop_user_srv'"
+          │          └ 1049
+          └ <class 'pymysql.err.OperationalError'>
+
+pymysql.err.OperationalError: (1049, "Unknown database 'shop_user_srv'")
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3175, in execute_sql
+    cursor = self.cursor(commit)
+             │    │      └ True
+             │    └ <function Database.cursor at 0x00000256285B7708>
+             └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3159, in cursor
+    self.connect()
+    │    └ <function PooledDatabase.connect at 0x0000025628713438>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\pool.py", line 109, in connect
+    return super(PooledDatabase, self).connect(reuse_if_open)
+                 │               │             └ False
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3116, in connect
+    self._initialize_connection(self._state.conn)
+    │    │                      │    └ <peewee._ConnectionLocal object at 0x000002562875C288>
+    │    │                      └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+    │    └ <function Database._initialize_connection at 0x00000256285B7318>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2950, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x0000025628CCFD48>
+    │       │         │        │           └ (1049, "Unknown database 'shop_user_srv'")
+    │       │         │        └ OperationalError(1049, "Unknown database 'shop_user_srv'")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x0000025628400828>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 191, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x0000025628CCFD48>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(1049, "Unknown database 'shop_user_srv'")
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3113, in connect
+    self._state.set_connection(self._connect())
+    │    │      │              │    └ <function PooledDatabase._connect at 0x00000256287134C8>
+    │    │      │              └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+    │    │      └ <function _ConnectionState.set_connection at 0x00000256285B3B88>
+    │    └ <peewee._ConnectionLocal object at 0x000002562875C288>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\pool.py", line 156, in _connect
+    conn = super(PooledDatabase, self)._connect()
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 4034, in _connect
+    conn = mysql.connect(db=self.database, **self.connect_params)
+           │     │          │    │           │    └ {'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'host': '192.168.141.128', 'port': 3306, 'user': 'roo...
+           │     │          │    │           └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │     │          │    └ 'shop_user_srv'
+           │     │          └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │     └ <class 'pymysql.connections.Connection'>
+           └ <module 'pymysql' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\__init__.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 353, in __init__
+    self.connect()
+    │    └ <function Connection.connect at 0x000002562857C4C8>
+    └ <pymysql.connections.Connection object at 0x0000025628CE6348>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 633, in connect
+    self._request_authentication()
+    │    └ <function Connection._request_authentication at 0x000002562857C948>
+    └ <pymysql.connections.Connection object at 0x0000025628CE6348>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+                  │    └ <function Connection._read_packet at 0x000002562857C5E8>
+                  └ <pymysql.connections.Connection object at 0x0000025628CE6348>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x00000256285769D8>
+    └ <pymysql.protocol.MysqlPacket object at 0x0000025628CCF9C8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x0000025628CCF9C8>
+    │   └ <function raise_mysql_exception at 0x00000256284009D8>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown database 'shop_user_srv'"
+          │          └ 1049
+          └ <class 'pymysql.err.OperationalError'>
+
+peewee.OperationalError: (1049, "Unknown database 'shop_user_srv'")
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x00000256260EFAF8>
+    └ <Thread(ThreadPoolExecutor-0_6, started daemon 15380)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x00000256260EF8B8>
+    └ <Thread(ThreadPoolExecutor-0_6, started daemon 15380)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_6, started daemon 15380)>
+    │    │        │    └ (<weakref at 0x0000025628CC4318; to 'ThreadPoolExecutor' at 0x0000025628A46A88>, <_queue.SimpleQueue object at 0x0000025628A3...
+    │    │        └ <Thread(ThreadPoolExecutor-0_6, started daemon 15380)>
+    │    └ <function _worker at 0x0000025628A4F4C8>
+    └ <Thread(ThreadPoolExecutor-0_6, started daemon 15380)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x0000025628A4F5E8>
+    └ <concurrent.futures.thread._WorkItem object at 0x0000025628CE8688>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x0000025628CE8688>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x0000025628CE9368>, <grpc._server._RPCState object at 0x0000025628CE84C8>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x0000025628CE8688>
+             │    └ <function _unary_response_in_pool at 0x0000025628A7CC18>
+             └ <concurrent.futures.thread._WorkItem object at 0x0000025628CE8688>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x0000025626008AA8>
+    └ mobile: "13169188007"
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x0000025628CE8748>
+                           │        └ mobile: "13169188007"
+                           │          
+                           └ <bound method UserServicer.GetUserByMobile of <user_srv.handler.user.UserServicer object at 0x0000025628A49E08>>
+
+  File "D:\PythonProjects\shop\user_srv\handler\user.py", line 69, in GetUserByMobile
+    user = User.get(User.mobile == request.mobile)
+           │    │   │    │         │       └ <field property 'MobileRequest.mobile'>
+           │    │   │    │         └ mobile: "13169188007"
+           │    │   │    │           
+           │    │   │    └ <peewee.FieldAccessor object at 0x000002562876A588>
+           │    │   └ <Model: User>
+           │    └ <classmethod object at 0x00000256285D86C8>
+           └ <Model: User>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 6522, in get
+    return sq.get()
+           │  └ <function BaseModelSelect.get at 0x00000256285DDAF8>
+           └ <peewee.ModelSelect object at 0x0000025628CE6208>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 6970, in get
+    return clone.execute(database)[0]
+           │     │       └ None
+           │     └ <function BaseQuery.execute at 0x000002562859F678>
+           └ <peewee.ModelSelect object at 0x0000025628CE6108>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │      └ <peewee.ModelSelect object at 0x0000025628CE6108>
+           └ <function BaseQuery.execute at 0x000002562859F5E8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1989, in execute
+    return self._execute(database)
+           │    │        └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │    └ <function SelectBase._execute at 0x00000256285A1288>
+           └ <peewee.ModelSelect object at 0x0000025628CE6108>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2162, in _execute
+    cursor = database.execute(self)
+             │        │       └ <peewee.ModelSelect object at 0x0000025628CE6108>
+             │        └ <function Database.execute at 0x00000256285B7828>
+             └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3190, in execute
+    return self.execute_sql(sql, params, commit=commit)
+           │    │           │    │              └ <object object at 0x0000025628547080>
+           │    │           │    └ ['13169188007', 1, 0]
+           │    │           └ 'SELECT `t1`.`id`, `t1`.`mobile`, `t1`.`password`, `t1`.`nick_name`, `t1`.`head_img_url`, `t1`.`birthday`, `t1`.`address`, `t...
+           │    └ <function ReconnectMixin.execute_sql at 0x000002562873ACA8>
+           └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\shortcuts.py", line 261, in execute_sql
+    raise exc
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\shortcuts.py", line 250, in execute_sql
+    return super(ReconnectMixin, self).execute_sql(sql, params, commit)
+                 │               │                 │    │       └ <object object at 0x0000025628547080>
+                 │               │                 │    └ ['13169188007', 1, 0]
+                 │               │                 └ 'SELECT `t1`.`id`, `t1`.`mobile`, `t1`.`password`, `t1`.`nick_name`, `t1`.`head_img_url`, `t1`.`birthday`, `t1`.`address`, `t...
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+                 └ <class 'playhouse.shortcuts.ReconnectMixin'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3184, in execute_sql
+    self.commit()
+    │    └ <function Database.commit at 0x00000256285B84C8>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2950, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x0000025628CCF788>
+    │       │         │        │           └ (1049, "Unknown database 'shop_user_srv'")
+    │       │         │        └ OperationalError(1049, "Unknown database 'shop_user_srv'")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x0000025628400828>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 191, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x0000025628CCF788>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(1049, "Unknown database 'shop_user_srv'")
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3175, in execute_sql
+    cursor = self.cursor(commit)
+             │    │      └ True
+             │    └ <function Database.cursor at 0x00000256285B7708>
+             └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3159, in cursor
+    self.connect()
+    │    └ <function PooledDatabase.connect at 0x0000025628713438>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\pool.py", line 109, in connect
+    return super(PooledDatabase, self).connect(reuse_if_open)
+                 │               │             └ False
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3116, in connect
+    self._initialize_connection(self._state.conn)
+    │    │                      │    └ <peewee._ConnectionLocal object at 0x000002562875C288>
+    │    │                      └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+    │    └ <function Database._initialize_connection at 0x00000256285B7318>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2950, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x0000025628CCFD48>
+    │       │         │        │           └ (1049, "Unknown database 'shop_user_srv'")
+    │       │         │        └ OperationalError(1049, "Unknown database 'shop_user_srv'")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x0000025628400828>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 191, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x0000025628CCFD48>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(1049, "Unknown database 'shop_user_srv'")
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3113, in connect
+    self._state.set_connection(self._connect())
+    │    │      │              │    └ <function PooledDatabase._connect at 0x00000256287134C8>
+    │    │      │              └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+    │    │      └ <function _ConnectionState.set_connection at 0x00000256285B3B88>
+    │    └ <peewee._ConnectionLocal object at 0x000002562875C288>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\pool.py", line 156, in _connect
+    conn = super(PooledDatabase, self)._connect()
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 4034, in _connect
+    conn = mysql.connect(db=self.database, **self.connect_params)
+           │     │          │    │           │    └ {'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'host': '192.168.141.128', 'port': 3306, 'user': 'roo...
+           │     │          │    │           └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │     │          │    └ 'shop_user_srv'
+           │     │          └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │     └ <class 'pymysql.connections.Connection'>
+           └ <module 'pymysql' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\__init__.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 353, in __init__
+    self.connect()
+    │    └ <function Connection.connect at 0x000002562857C4C8>
+    └ <pymysql.connections.Connection object at 0x0000025628CE6348>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 633, in connect
+    self._request_authentication()
+    │    └ <function Connection._request_authentication at 0x000002562857C948>
+    └ <pymysql.connections.Connection object at 0x0000025628CE6348>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+                  │    └ <function Connection._read_packet at 0x000002562857C5E8>
+                  └ <pymysql.connections.Connection object at 0x0000025628CE6348>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x00000256285769D8>
+    └ <pymysql.protocol.MysqlPacket object at 0x0000025628CCF9C8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x0000025628CCF9C8>
+    │   └ <function raise_mysql_exception at 0x00000256284009D8>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown database 'shop_user_srv'"
+          │          └ 1049
+          └ <class 'pymysql.err.OperationalError'>
+
+peewee.OperationalError: (1049, "Unknown database 'shop_user_srv'")
+2022-05-25 22:24:17.076 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (5176), thread 'ThreadPoolExecutor-0_4' (4320):
+Traceback (most recent call last):
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3113, in connect
+    self._state.set_connection(self._connect())
+    │    │      │              │    └ <function PooledDatabase._connect at 0x00000256287134C8>
+    │    │      │              └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+    │    │      └ <function _ConnectionState.set_connection at 0x00000256285B3B88>
+    │    └ <peewee._ConnectionLocal object at 0x000002562875C288>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\pool.py", line 156, in _connect
+    conn = super(PooledDatabase, self)._connect()
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 4034, in _connect
+    conn = mysql.connect(db=self.database, **self.connect_params)
+           │     │          │    │           │    └ {'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'host': '192.168.141.128', 'port': 3306, 'user': 'roo...
+           │     │          │    │           └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │     │          │    └ 'shop_user_srv'
+           │     │          └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │     └ <class 'pymysql.connections.Connection'>
+           └ <module 'pymysql' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\__init__.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 353, in __init__
+    self.connect()
+    │    └ <function Connection.connect at 0x000002562857C4C8>
+    └ <pymysql.connections.Connection object at 0x0000025629721488>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 633, in connect
+    self._request_authentication()
+    │    └ <function Connection._request_authentication at 0x000002562857C948>
+    └ <pymysql.connections.Connection object at 0x0000025629721488>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+                  │    └ <function Connection._read_packet at 0x000002562857C5E8>
+                  └ <pymysql.connections.Connection object at 0x0000025629721488>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x00000256285769D8>
+    └ <pymysql.protocol.MysqlPacket object at 0x0000025629721C48>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x0000025629721C48>
+    │   └ <function raise_mysql_exception at 0x00000256284009D8>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown database 'shop_user_srv'"
+          │          └ 1049
+          └ <class 'pymysql.err.OperationalError'>
+
+pymysql.err.OperationalError: (1049, "Unknown database 'shop_user_srv'")
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3175, in execute_sql
+    cursor = self.cursor(commit)
+             │    │      └ True
+             │    └ <function Database.cursor at 0x00000256285B7708>
+             └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3159, in cursor
+    self.connect()
+    │    └ <function PooledDatabase.connect at 0x0000025628713438>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\pool.py", line 109, in connect
+    return super(PooledDatabase, self).connect(reuse_if_open)
+                 │               │             └ False
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3116, in connect
+    self._initialize_connection(self._state.conn)
+    │    │                      │    └ <peewee._ConnectionLocal object at 0x000002562875C288>
+    │    │                      └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+    │    └ <function Database._initialize_connection at 0x00000256285B7318>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2950, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x0000025629721E48>
+    │       │         │        │           └ (1049, "Unknown database 'shop_user_srv'")
+    │       │         │        └ OperationalError(1049, "Unknown database 'shop_user_srv'")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x0000025628400828>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 191, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x0000025629721E48>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(1049, "Unknown database 'shop_user_srv'")
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3113, in connect
+    self._state.set_connection(self._connect())
+    │    │      │              │    └ <function PooledDatabase._connect at 0x00000256287134C8>
+    │    │      │              └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+    │    │      └ <function _ConnectionState.set_connection at 0x00000256285B3B88>
+    │    └ <peewee._ConnectionLocal object at 0x000002562875C288>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\pool.py", line 156, in _connect
+    conn = super(PooledDatabase, self)._connect()
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 4034, in _connect
+    conn = mysql.connect(db=self.database, **self.connect_params)
+           │     │          │    │           │    └ {'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'host': '192.168.141.128', 'port': 3306, 'user': 'roo...
+           │     │          │    │           └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │     │          │    └ 'shop_user_srv'
+           │     │          └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │     └ <class 'pymysql.connections.Connection'>
+           └ <module 'pymysql' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\__init__.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 353, in __init__
+    self.connect()
+    │    └ <function Connection.connect at 0x000002562857C4C8>
+    └ <pymysql.connections.Connection object at 0x0000025629721488>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 633, in connect
+    self._request_authentication()
+    │    └ <function Connection._request_authentication at 0x000002562857C948>
+    └ <pymysql.connections.Connection object at 0x0000025629721488>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+                  │    └ <function Connection._read_packet at 0x000002562857C5E8>
+                  └ <pymysql.connections.Connection object at 0x0000025629721488>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x00000256285769D8>
+    └ <pymysql.protocol.MysqlPacket object at 0x0000025629721C48>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x0000025629721C48>
+    │   └ <function raise_mysql_exception at 0x00000256284009D8>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown database 'shop_user_srv'"
+          │          └ 1049
+          └ <class 'pymysql.err.OperationalError'>
+
+peewee.OperationalError: (1049, "Unknown database 'shop_user_srv'")
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x00000256260EFAF8>
+    └ <Thread(ThreadPoolExecutor-0_4, started daemon 4320)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x00000256260EF8B8>
+    └ <Thread(ThreadPoolExecutor-0_4, started daemon 4320)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_4, started daemon 4320)>
+    │    │        │    └ (<weakref at 0x0000025628CC0458; to 'ThreadPoolExecutor' at 0x0000025628A46A88>, <_queue.SimpleQueue object at 0x0000025628A3...
+    │    │        └ <Thread(ThreadPoolExecutor-0_4, started daemon 4320)>
+    │    └ <function _worker at 0x0000025628A4F4C8>
+    └ <Thread(ThreadPoolExecutor-0_4, started daemon 4320)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x0000025628A4F5E8>
+    └ <concurrent.futures.thread._WorkItem object at 0x0000025628CD18C8>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x0000025628CD18C8>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x0000025628CE9638>, <grpc._server._RPCState object at 0x000002562971FD48>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x0000025628CD18C8>
+             │    └ <function _unary_response_in_pool at 0x0000025628A7CC18>
+             └ <concurrent.futures.thread._WorkItem object at 0x0000025628CD18C8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x0000025626008AA8>
+    └ mobile: "13169188007"
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x0000025628CD1788>
+                           │        └ mobile: "13169188007"
+                           │          
+                           └ <bound method UserServicer.GetUserByMobile of <user_srv.handler.user.UserServicer object at 0x0000025628A49E08>>
+
+  File "D:\PythonProjects\shop\user_srv\handler\user.py", line 69, in GetUserByMobile
+    user = User.get(User.mobile == request.mobile)
+           │    │   │    │         │       └ <field property 'MobileRequest.mobile'>
+           │    │   │    │         └ mobile: "13169188007"
+           │    │   │    │           
+           │    │   │    └ <peewee.FieldAccessor object at 0x000002562876A588>
+           │    │   └ <Model: User>
+           │    └ <classmethod object at 0x00000256285D86C8>
+           └ <Model: User>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 6522, in get
+    return sq.get()
+           │  └ <function BaseModelSelect.get at 0x00000256285DDAF8>
+           └ <peewee.ModelSelect object at 0x0000025628CD1108>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 6970, in get
+    return clone.execute(database)[0]
+           │     │       └ None
+           │     └ <function BaseQuery.execute at 0x000002562859F678>
+           └ <peewee.ModelSelect object at 0x0000025628CD1A08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │      └ <peewee.ModelSelect object at 0x0000025628CD1A08>
+           └ <function BaseQuery.execute at 0x000002562859F5E8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1989, in execute
+    return self._execute(database)
+           │    │        └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │    └ <function SelectBase._execute at 0x00000256285A1288>
+           └ <peewee.ModelSelect object at 0x0000025628CD1A08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2162, in _execute
+    cursor = database.execute(self)
+             │        │       └ <peewee.ModelSelect object at 0x0000025628CD1A08>
+             │        └ <function Database.execute at 0x00000256285B7828>
+             └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3190, in execute
+    return self.execute_sql(sql, params, commit=commit)
+           │    │           │    │              └ <object object at 0x0000025628547080>
+           │    │           │    └ ['13169188007', 1, 0]
+           │    │           └ 'SELECT `t1`.`id`, `t1`.`mobile`, `t1`.`password`, `t1`.`nick_name`, `t1`.`head_img_url`, `t1`.`birthday`, `t1`.`address`, `t...
+           │    └ <function ReconnectMixin.execute_sql at 0x000002562873ACA8>
+           └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\shortcuts.py", line 261, in execute_sql
+    raise exc
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\shortcuts.py", line 250, in execute_sql
+    return super(ReconnectMixin, self).execute_sql(sql, params, commit)
+                 │               │                 │    │       └ <object object at 0x0000025628547080>
+                 │               │                 │    └ ['13169188007', 1, 0]
+                 │               │                 └ 'SELECT `t1`.`id`, `t1`.`mobile`, `t1`.`password`, `t1`.`nick_name`, `t1`.`head_img_url`, `t1`.`birthday`, `t1`.`address`, `t...
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+                 └ <class 'playhouse.shortcuts.ReconnectMixin'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3184, in execute_sql
+    self.commit()
+    │    └ <function Database.commit at 0x00000256285B84C8>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2950, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x0000025629721FC8>
+    │       │         │        │           └ (1049, "Unknown database 'shop_user_srv'")
+    │       │         │        └ OperationalError(1049, "Unknown database 'shop_user_srv'")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x0000025628400828>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 191, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x0000025629721FC8>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(1049, "Unknown database 'shop_user_srv'")
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3175, in execute_sql
+    cursor = self.cursor(commit)
+             │    │      └ True
+             │    └ <function Database.cursor at 0x00000256285B7708>
+             └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3159, in cursor
+    self.connect()
+    │    └ <function PooledDatabase.connect at 0x0000025628713438>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\pool.py", line 109, in connect
+    return super(PooledDatabase, self).connect(reuse_if_open)
+                 │               │             └ False
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3116, in connect
+    self._initialize_connection(self._state.conn)
+    │    │                      │    └ <peewee._ConnectionLocal object at 0x000002562875C288>
+    │    │                      └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+    │    └ <function Database._initialize_connection at 0x00000256285B7318>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2950, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x0000025629721E48>
+    │       │         │        │           └ (1049, "Unknown database 'shop_user_srv'")
+    │       │         │        └ OperationalError(1049, "Unknown database 'shop_user_srv'")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x0000025628400828>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 191, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x0000025629721E48>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(1049, "Unknown database 'shop_user_srv'")
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3113, in connect
+    self._state.set_connection(self._connect())
+    │    │      │              │    └ <function PooledDatabase._connect at 0x00000256287134C8>
+    │    │      │              └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+    │    │      └ <function _ConnectionState.set_connection at 0x00000256285B3B88>
+    │    └ <peewee._ConnectionLocal object at 0x000002562875C288>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\pool.py", line 156, in _connect
+    conn = super(PooledDatabase, self)._connect()
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 4034, in _connect
+    conn = mysql.connect(db=self.database, **self.connect_params)
+           │     │          │    │           │    └ {'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'host': '192.168.141.128', 'port': 3306, 'user': 'roo...
+           │     │          │    │           └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │     │          │    └ 'shop_user_srv'
+           │     │          └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x0000025628758E08>
+           │     └ <class 'pymysql.connections.Connection'>
+           └ <module 'pymysql' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\__init__.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 353, in __init__
+    self.connect()
+    │    └ <function Connection.connect at 0x000002562857C4C8>
+    └ <pymysql.connections.Connection object at 0x0000025629721488>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 633, in connect
+    self._request_authentication()
+    │    └ <function Connection._request_authentication at 0x000002562857C948>
+    └ <pymysql.connections.Connection object at 0x0000025629721488>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 907, in _request_authentication
+    auth_packet = self._read_packet()
+                  │    └ <function Connection._read_packet at 0x000002562857C5E8>
+                  └ <pymysql.connections.Connection object at 0x0000025629721488>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x00000256285769D8>
+    └ <pymysql.protocol.MysqlPacket object at 0x0000025629721C48>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x0000025629721C48>
+    │   └ <function raise_mysql_exception at 0x00000256284009D8>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown database 'shop_user_srv'"
+          │          └ 1049
+          └ <class 'pymysql.err.OperationalError'>
+
+peewee.OperationalError: (1049, "Unknown database 'shop_user_srv'")

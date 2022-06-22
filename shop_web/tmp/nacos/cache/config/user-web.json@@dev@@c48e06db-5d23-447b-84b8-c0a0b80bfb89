@@ -1,0 +1,27 @@
+{
+  "name": "user_web",
+  "host": "192.168.23.1",
+  "port": 8021,
+  "tags": ["shop", "hugo", "user", "web"],
+  "user_srv": {
+    "host": "192.168.23.1",
+    "port": 50051,
+    "name": "user-srv"
+  },
+  "jwt": {
+    "key": "H5WR$!h2mJxL%VMPx5ZtyXVlyZl1&%1#"
+  },
+  "sms": {
+    "key": "LTAI5t9BdaLU64kHrtxHxtCk",
+    "secret": "8qCdPsjhA1d7vWnGKCsClf36yOO0Pc"
+  },
+  "redis": {
+    "host": "192.168.141.128",
+    "port": 6379,
+    "expire": 3600
+  },
+  "consul": {
+    "host": "192.168.141.128",
+    "port": 8500
+  }
+}

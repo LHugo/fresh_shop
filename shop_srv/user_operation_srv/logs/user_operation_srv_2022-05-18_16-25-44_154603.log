@@ -1,0 +1,259 @@
+2022-05-18 16:25:44.169 | INFO     | __main__:server:76 - 启动服务：192.168.23.1:51061
+2022-05-18 16:25:44.174 | INFO     | __main__:server:79 - 服务注册开始
+2022-05-18 16:25:44.210 | INFO     | __main__:server:86 - 服务注册成功
+2022-05-18 16:26:00.279 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (1072), thread 'ThreadPoolExecutor-0_0' (9668):
+Traceback (most recent call last):
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3177, in execute_sql
+    cursor.execute(sql, params or ())
+    │      │       │    └ [datetime.datetime(2022, 5, 18, 16, 26, 0, 193119), datetime.datetime(2022, 5, 18, 16, 26, 0, 193119), False, 11, 1, 'test', ...
+    │      │       └ 'INSERT INTO `messages` (`add_time`, `update_time`, `is_deleted`, `user`, `message_type`, `subject`, `message`, `file`) VALUE...
+    │      └ <function Cursor.execute at 0x000002779EAE5F78>
+    └ <pymysql.cursors.Cursor object at 0x000002779F4C9408>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+             │    │      └ "INSERT INTO `messages` (`add_time`, `update_time`, `is_deleted`, `user`, `message_type`, `subject`, `message`, `file`) VALUE...
+             │    └ <function Cursor._query at 0x000002779EAE8438>
+             └ <pymysql.cursors.Cursor object at 0x000002779F4C9408>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+    │    │     └ "INSERT INTO `messages` (`add_time`, `update_time`, `is_deleted`, `user`, `message_type`, `subject`, `message`, `file`) VALUE...
+    │    └ <function Connection.query at 0x000002779EB180D8>
+    └ <pymysql.connections.Connection object at 0x000002779F4C9A48>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+    │    │                │    │                             └ False
+    │    │                │    └ <function Connection._read_query_result at 0x000002779EB18708>
+    │    │                └ <pymysql.connections.Connection object at 0x000002779F4C9A48>
+    │    └ 0
+    └ <pymysql.connections.Connection object at 0x000002779F4C9A48>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+    │      └ <function MySQLResult.read at 0x000002779EB18EE8>
+    └ <pymysql.connections.MySQLResult object at 0x000002779F4C9DC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+                   │    └ None
+                   └ <pymysql.connections.MySQLResult object at 0x000002779F4C9DC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x000002779EB11948>
+    └ <pymysql.protocol.MysqlPacket object at 0x000002779F4C9EC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x000002779F4C9EC8>
+    │   └ <function raise_mysql_exception at 0x000002779E998948>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown column 'message' in 'field list'"
+          │          └ 1054
+          └ <class 'pymysql.err.OperationalError'>
+
+pymysql.err.OperationalError: (1054, "Unknown column 'message' in 'field list'")
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002779C72FAF8>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 9668)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000002779C72F8B8>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 9668)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_0, started daemon 9668)>
+    │    │        │    └ (<weakref at 0x000002779F4B2D68; to 'ThreadPoolExecutor' at 0x000002779F328F08>, <_queue.SimpleQueue object at 0x000002779F33...
+    │    │        └ <Thread(ThreadPoolExecutor-0_0, started daemon 9668)>
+    │    └ <function _worker at 0x000002779F34A9D8>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 9668)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x000002779F34AAF8>
+    └ <concurrent.futures.thread._WorkItem object at 0x000002779F4ADCC8>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x000002779F4ADCC8>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x000002779F4B2A48>, <grpc._server._RPCState object at 0x000002779F487648>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x000002779F4ADCC8>
+             │    └ <function _unary_response_in_pool at 0x000002779F37E1F8>
+             └ <concurrent.futures.thread._WorkItem object at 0x000002779F4ADCC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x000002779C639878>
+    └ userId: 11
+      messageType: 1
+      subject: "test"
+      text: "test"
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x000002779F4AD788>
+                           │        └ userId: 11
+                           │          messageType: 1
+                           │          subject: "test"
+                           │          text: "test"
+                           │          
+                           └ <bound method MessageServicer.CreateMessage of <user_operation_srv.handler.message.MessageServicer object at 0x000002779F3512...
+
+  File "D:\PythonProjects\shop\user_operation_srv\handler\message.py", line 40, in CreateMessage
+    message.save()
+    │       └ <function BaseModel.save at 0x000002779EB93318>
+    └ <Messages: None>
+
+  File "D:\PythonProjects\shop\user_operation_srv\model\models.py", line 26, in save
+    return super().save(*args, **kwargs)
+                         │       └ {}
+                         └ ()
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 6640, in save
+    pk = self.insert(**field_dict).execute()
+         │    │        └ {'message_type': 1, 'subject': 'test', 'message': '', 'is_deleted': False, 'add_time': datetime.datetime(2022, 5, 18, 16, 26,...
+         │    └ <classmethod object at 0x000002779EB6E888>
+         └ <Messages: None>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <user_operation_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002779EF1AFC8>
+           │      └ <peewee.ModelInsert object at 0x000002779F4AD648>
+           └ <function BaseQuery.execute at 0x000002779EB38558>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 1989, in execute
+    return self._execute(database)
+           │    │        └ <user_operation_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002779EF1AFC8>
+           │    └ <function Insert._execute at 0x000002779EB41DC8>
+           └ <peewee.ModelInsert object at 0x000002779F4AD648>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2778, in _execute
+    return super(Insert, self)._execute(database)
+                 │       │              └ <user_operation_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002779EF1AFC8>
+                 │       └ <peewee.ModelInsert object at 0x000002779F4AD648>
+                 └ <class 'peewee.Insert'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2496, in _execute
+    cursor = database.execute(self)
+             │        │       └ <peewee.ModelInsert object at 0x000002779F4AD648>
+             │        └ <function Database.execute at 0x000002779EB51798>
+             └ <user_operation_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002779EF1AFC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3190, in execute
+    return self.execute_sql(sql, params, commit=commit)
+           │    │           │    │              └ <object object at 0x000002779E057EA0>
+           │    │           │    └ [datetime.datetime(2022, 5, 18, 16, 26, 0, 193119), datetime.datetime(2022, 5, 18, 16, 26, 0, 193119), False, 11, 1, 'test', ...
+           │    │           └ 'INSERT INTO `messages` (`add_time`, `update_time`, `is_deleted`, `user`, `message_type`, `subject`, `message`, `file`) VALUE...
+           │    └ <function ReconnectMixin.execute_sql at 0x000002779E8DA4C8>
+           └ <user_operation_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002779EF1AFC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\shortcuts.py", line 261, in execute_sql
+    raise exc
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\playhouse\shortcuts.py", line 250, in execute_sql
+    return super(ReconnectMixin, self).execute_sql(sql, params, commit)
+                 │               │                 │    │       └ <object object at 0x000002779E057EA0>
+                 │               │                 │    └ [datetime.datetime(2022, 5, 18, 16, 26, 0, 193119), datetime.datetime(2022, 5, 18, 16, 26, 0, 193119), False, 11, 1, 'test', ...
+                 │               │                 └ 'INSERT INTO `messages` (`add_time`, `update_time`, `is_deleted`, `user`, `message_type`, `subject`, `message`, `file`) VALUE...
+                 │               └ <user_operation_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002779EF1AFC8>
+                 └ <class 'playhouse.shortcuts.ReconnectMixin'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3184, in execute_sql
+    self.commit()
+    │    └ <function Database.commit at 0x000002779EB52438>
+    └ <user_operation_srv.settings.settings.ReconnectMysqlDatabase object at 0x000002779EF1AFC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 2950, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x000002779F4DA148>
+    │       │         │        │           └ (1054, "Unknown column 'message' in 'field list'")
+    │       │         │        └ OperationalError(1054, "Unknown column 'message' in 'field list'")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x000002779E998798>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 191, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x000002779F4DA148>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(1054, "Unknown column 'message' in 'field list'")
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\peewee.py", line 3177, in execute_sql
+    cursor.execute(sql, params or ())
+    │      │       │    └ [datetime.datetime(2022, 5, 18, 16, 26, 0, 193119), datetime.datetime(2022, 5, 18, 16, 26, 0, 193119), False, 11, 1, 'test', ...
+    │      │       └ 'INSERT INTO `messages` (`add_time`, `update_time`, `is_deleted`, `user`, `message_type`, `subject`, `message`, `file`) VALUE...
+    │      └ <function Cursor.execute at 0x000002779EAE5F78>
+    └ <pymysql.cursors.Cursor object at 0x000002779F4C9408>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+             │    │      └ "INSERT INTO `messages` (`add_time`, `update_time`, `is_deleted`, `user`, `message_type`, `subject`, `message`, `file`) VALUE...
+             │    └ <function Cursor._query at 0x000002779EAE8438>
+             └ <pymysql.cursors.Cursor object at 0x000002779F4C9408>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+    │    │     └ "INSERT INTO `messages` (`add_time`, `update_time`, `is_deleted`, `user`, `message_type`, `subject`, `message`, `file`) VALUE...
+    │    └ <function Connection.query at 0x000002779EB180D8>
+    └ <pymysql.connections.Connection object at 0x000002779F4C9A48>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+    │    │                │    │                             └ False
+    │    │                │    └ <function Connection._read_query_result at 0x000002779EB18708>
+    │    │                └ <pymysql.connections.Connection object at 0x000002779F4C9A48>
+    │    └ 0
+    └ <pymysql.connections.Connection object at 0x000002779F4C9A48>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+    │      └ <function MySQLResult.read at 0x000002779EB18EE8>
+    └ <pymysql.connections.MySQLResult object at 0x000002779F4C9DC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+                   │    └ None
+                   └ <pymysql.connections.MySQLResult object at 0x000002779F4C9DC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x000002779EB11948>
+    └ <pymysql.protocol.MysqlPacket object at 0x000002779F4C9EC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x000002779F4C9EC8>
+    │   └ <function raise_mysql_exception at 0x000002779E998948>
+    └ <module 'pymysql.err' from 'D:\\virtual-environment\\py3.7\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Unknown column 'message' in 'field list'"
+          │          └ 1054
+          └ <class 'pymysql.err.OperationalError'>
+
+peewee.OperationalError: (1054, "Unknown column 'message' in 'field list'")
+2022-05-18 16:28:40.352 | INFO     | __main__:on_exit:43 - 注销1c5f94c8-d684-11ec-89c2-5800e3ca956e服务
+2022-05-18 16:28:40.398 | INFO     | __main__:on_exit:45 - 服务注销成功

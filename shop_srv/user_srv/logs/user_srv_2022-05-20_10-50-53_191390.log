@@ -1,0 +1,72 @@
+2022-05-20 10:50:53.209 | INFO     | __main__:server:71 - 启动服务：192.168.23.1:54528
+2022-05-20 10:50:53.213 | INFO     | __main__:server:73 - 服务注册开始
+2022-05-20 10:50:53.267 | INFO     | __main__:server:79 - 服务注册成功
+2022-05-20 10:51:02.964 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (3264), thread 'ThreadPoolExecutor-0_1' (9740):
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x0000012DB46AFAF8>
+    └ <Thread(ThreadPoolExecutor-0_1, started daemon 9740)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x0000012DB46AF8B8>
+    └ <Thread(ThreadPoolExecutor-0_1, started daemon 9740)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_1, started daemon 9740)>
+    │    │        │    └ (<weakref at 0x0000012DB7372CC8; to 'ThreadPoolExecutor' at 0x0000012DB72059C8>, <_queue.SimpleQueue object at 0x0000012DB71F...
+    │    │        └ <Thread(ThreadPoolExecutor-0_1, started daemon 9740)>
+    │    └ <function _worker at 0x0000012DB720E4C8>
+    └ <Thread(ThreadPoolExecutor-0_1, started daemon 9740)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x0000012DB720E5E8>
+    └ <concurrent.futures.thread._WorkItem object at 0x0000012DB726B9C8>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x0000012DB726B9C8>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x0000012DB7372868>, <grpc._server._RPCState object at 0x0000012DB725EBC8>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x0000012DB726B9C8>
+             │    └ <function _unary_response_in_pool at 0x0000012DB723CC18>
+             └ <concurrent.futures.thread._WorkItem object at 0x0000012DB726B9C8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x0000012DB48848E8>
+    └ id: 11
+      nick_name: "hugo"
+      gender: "male"
+      birthday: 18446744011573954816
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x0000012DB726B308>
+                           │        └ id: 11
+                           │          nick_name: "hugo"
+                           │          gender: "male"
+                           │          birthday: 18446744011573954816
+                           │          
+                           └ <bound method UserServicer.UpdateUser of <user_srv.handler.user.UserServicer object at 0x0000012DB720AEC8>>
+
+  File "D:\PythonProjects\shop\user_srv\handler\user.py", line 106, in UpdateUser
+    user.birthday = date.localtime(request.birthday)
+    │    │          │              │       └ <field property 'UpdateUserInfo.birthday'>
+    │    │          │              └ id: 11
+    │    │          │                nick_name: "hugo"
+    │    │          │                gender: "male"
+    │    │          │                birthday: 18446744011573954816
+    │    │          │                
+    │    │          └ <class 'datetime.date'>
+    │    └ <peewee.FieldAccessor object at 0x0000012DB6F2A708>
+    └ <User: 11>
+
+AttributeError: type object 'datetime.date' has no attribute 'localtime'
+2022-05-20 10:51:33.400 | INFO     | __main__:on_exit:41 - 注销aa0de9d0-d7e7-11ec-8cb7-5800e3ca956e服务
+2022-05-20 10:51:33.416 | INFO     | __main__:on_exit:43 - 服务注销成功

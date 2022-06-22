@@ -1,0 +1,73 @@
+2022-05-20 10:35:39.335 | INFO     | __main__:server:71 - 启动服务：192.168.23.1:51292
+2022-05-20 10:35:39.347 | INFO     | __main__:server:73 - 服务注册开始
+2022-05-20 10:35:39.375 | INFO     | __main__:server:79 - 服务注册成功
+2022-05-20 10:43:33.142 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (10768), thread 'ThreadPoolExecutor-0_4' (11800):
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x0000023D4F95FAF8>
+    └ <Thread(ThreadPoolExecutor-0_4, started daemon 11800)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x0000023D4F95F8B8>
+    └ <Thread(ThreadPoolExecutor-0_4, started daemon 11800)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_4, started daemon 11800)>
+    │    │        │    └ (<weakref at 0x0000023D52527D18; to 'ThreadPoolExecutor' at 0x0000023D52298FC8>, <_queue.SimpleQueue object at 0x0000023D522B...
+    │    │        └ <Thread(ThreadPoolExecutor-0_4, started daemon 11800)>
+    │    └ <function _worker at 0x0000023D522B73A8>
+    └ <Thread(ThreadPoolExecutor-0_4, started daemon 11800)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x0000023D522B74C8>
+    └ <concurrent.futures.thread._WorkItem object at 0x0000023D5254B1C8>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x0000023D5254B1C8>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x0000023D5255CA48>, <grpc._server._RPCState object at 0x0000023D52559288>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x0000023D5254B1C8>
+             │    └ <function _unary_response_in_pool at 0x0000023D522E9B88>
+             └ <concurrent.futures.thread._WorkItem object at 0x0000023D5254B1C8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x0000023D4F85A2D8>
+    └ id: 11
+      nick_name: "hugo"
+      gender: "male"
+      birthday: 18446744011573954816
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x0000023D5254BA88>
+                           │        └ id: 11
+                           │          nick_name: "hugo"
+                           │          gender: "male"
+                           │          birthday: 18446744011573954816
+                           │          
+                           └ <bound method UserServicer.UpdateUser of <user_srv.handler.user.UserServicer object at 0x0000023D522B5048>>
+
+  File "D:\PythonProjects\shop\user_srv\handler\user.py", line 106, in UpdateUser
+    user.birthday = date.fromtimestamp(request.birthday)
+    │    │          │    │             │       └ <field property 'UpdateUserInfo.birthday'>
+    │    │          │    │             └ id: 11
+    │    │          │    │               nick_name: "hugo"
+    │    │          │    │               gender: "male"
+    │    │          │    │               birthday: 18446744011573954816
+    │    │          │    │               
+    │    │          │    └ <method 'fromtimestamp' of 'datetime.date' objects>
+    │    │          └ <class 'datetime.date'>
+    │    └ <peewee.FieldAccessor object at 0x0000023D51FDB4C8>
+    └ <User: 11>
+
+OverflowError: timestamp out of range for platform time_t
+2022-05-20 10:50:42.233 | INFO     | __main__:on_exit:41 - 注销8957cf58-d7e5-11ec-b3d6-5800e3ca956e服务
+2022-05-20 10:50:42.494 | INFO     | __main__:on_exit:43 - 服务注销成功

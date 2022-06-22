@@ -1,0 +1,24 @@
+{
+    "name":"inventory-srv",
+    "tags":["shop", "hugo", "srv", "inventory"],
+    "redis":{
+        "host":"192.168.141.128",
+        "port":6379,
+        "db":0
+    },
+    "mysql":{
+        "db":"shop_inventorys_srv",
+        "host":"192.168.141.128",
+        "port":3306,
+        "user":"root",
+        "password":"root"
+    },
+    "consul":{
+        "host":"192.168.141.128",
+        "port":"8500"
+    },
+    "rocketmq":{
+        "host":"192.168.141.128",
+        "port":9876
+    }
+}

@@ -1,0 +1,62 @@
+2022-05-12 14:50:57.762 | INFO     | __main__:server:72 - 启动服务：192.168.23.1:59057
+2022-05-12 14:50:59.324 | INFO     | __main__:server:75 - 服务注册开始
+2022-05-12 14:50:59.932 | INFO     | __main__:server:82 - 服务注册成功
+2022-05-12 14:52:44.071 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (9652), thread 'ThreadPoolExecutor-0_8' (19488):
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000001481BC1FAF8>
+    └ <Thread(ThreadPoolExecutor-0_8, started daemon 19488)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000001481BC1F8B8>
+    └ <Thread(ThreadPoolExecutor-0_8, started daemon 19488)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_8, started daemon 19488)>
+    │    │        │    └ (<weakref at 0x000001481EBCDB88; to 'ThreadPoolExecutor' at 0x000001481EA32348>, <_queue.SimpleQueue object at 0x000001481EA4...
+    │    │        └ <Thread(ThreadPoolExecutor-0_8, started daemon 19488)>
+    │    └ <function _worker at 0x000001481EA4E678>
+    └ <Thread(ThreadPoolExecutor-0_8, started daemon 19488)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x000001481EA4E798>
+    └ <concurrent.futures.thread._WorkItem object at 0x000001481EBCB308>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x000001481EBCB308>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x000001481EBD0CC8>, <grpc._server._RPCState object at 0x000001481EBCB248>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x000001481EBCB308>
+             │    └ <function _unary_response_in_pool at 0x000001481EA7BD38>
+             └ <concurrent.futures.thread._WorkItem object at 0x000001481EBCB308>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x000001481BD889E8>
+    └ id: 2
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x000001481EBCB188>
+                           │        └ id: 2
+                           │          
+                           └ <bound method OrderServicer.OrderDetail of <order_srv.handler.order.OrderServicer object at 0x000001481EA4C1C8>>
+
+  File "D:\PythonProjects\shop\order_srv\handler\order.py", line 225, in OrderDetail
+    rsp.orderInfo.orderSn = order.orderSn
+    │   │                   └ <OrderInfo: 2>
+    │   └ <field property 'OrderInfoDetailResponse.orderInfo'>
+    └ orderInfo {
+        id: 2
+      }
+
+AttributeError: 'OrderInfo' object has no attribute 'orderSn'
+2022-05-12 15:49:05.322 | INFO     | __main__:on_exit:41 - 注销e0882cf0-d1bf-11ec-b1c2-5800e3ca956e服务
+2022-05-12 15:49:05.424 | INFO     | __main__:on_exit:43 - 服务注销成功

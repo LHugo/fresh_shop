@@ -1,0 +1,64 @@
+2022-05-23 13:16:47.165 | INFO     | __main__:server:72 - 启动服务：192.168.23.1:59647
+2022-05-23 13:16:47.169 | INFO     | __main__:server:75 - 服务注册开始
+2022-05-23 13:16:47.218 | INFO     | __main__:server:82 - 服务注册成功
+2022-05-23 13:16:50.304 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (1036), thread 'ThreadPoolExecutor-0_0' (10440):
+Traceback (most recent call last):
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002039B73FAF8>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 10440)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000002039B73F8B8>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 10440)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_0, started daemon 10440)>
+    │    │        │    └ (<weakref at 0x000002039E3AFE08; to 'ThreadPoolExecutor' at 0x000002039E2407C8>, <_queue.SimpleQueue object at 0x000002039E23...
+    │    │        └ <Thread(ThreadPoolExecutor-0_0, started daemon 10440)>
+    │    └ <function _worker at 0x000002039E249948>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 10440)>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x000002039E249A68>
+    └ <concurrent.futures.thread._WorkItem object at 0x000002039E39DDC8>
+
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x000002039E39DDC8>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x000002039E3AFB88>, <grpc._server._RPCState object at 0x000002039E38AF88>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x000002039E39DDC8>
+             │    └ <function _unary_response_in_pool at 0x000002039E2780D8>
+             └ <concurrent.futures.thread._WorkItem object at 0x000002039E39DDC8>
+
+  File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x000002039D651268>
+    └
+
+> File "D:\virtual-environment\py3.7\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x000002039E3A7888>
+                           │        └ 
+                           └ <bound method GoodsServicer.CategoryBrandList of <goods_srv.handler.goods.GoodsServicer object at 0x000002039E247AC8>>
+
+  File "D:\PythonProjects\shop\goods_srv\handler\goods.py", line 531, in CategoryBrandList
+    category_brand_rsp.category.parentCategory = category_brand.category.parent_category_id
+    │                  │                         │              └ <peewee.ForeignKeyAccessor object at 0x000002039DF45C08>
+    │                  │                         └ <GoodsCategoryBrand: 12>
+    │                  └ <field property 'CategoryBrandResponse.category'>
+    └ id: 12
+      brand {
+        id: 628
+        name: "\346\266\265\346\236\234"
+        logo: "https://img30.360buyimg.com/popshop/jfs/t1/10755/20/8366...
+
+TypeError: None has type NoneType, but expected one of: int, long
+2022-05-23 13:24:38.808 | INFO     | __main__:on_exit:41 - 注销8b0ecd54-da57-11ec-8f97-5a00e3ca956d服务
+2022-05-23 13:24:38.958 | INFO     | __main__:on_exit:43 - 服务注销成功
